@@ -7,6 +7,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+ * Hashing service class used to get the hash value of a given input and algorithm of choice.
+ */
+
 public class HashingService {
 
     public String getHash(String str, HashingAlgorithm algorithm) throws HashingException {
