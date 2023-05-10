@@ -4,7 +4,7 @@ import com.potato.passwordcracking.settings.SettingsManager;
 
 public class PasswordCrackingApplication {
 
-    private static SettingsManager settingsManager = new SettingsManager();
+    public final static SettingsManager settingsManager = new SettingsManager();
 
     public static void main(String[] args) {
         if (args.length > 0) {

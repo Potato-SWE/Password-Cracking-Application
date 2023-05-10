@@ -1,5 +1,6 @@
 package com.potato.passwordcracking.service;
 
+import com.potato.passwordcracking.PasswordCrackingApplication;
 import com.potato.passwordcracking.constant.HashingAlgorithm;
 import com.potato.passwordcracking.exception.HashingException;
 import com.potato.passwordcracking.model.PasswordCrackingRequest;
@@ -12,10 +13,14 @@ import java.util.HashSet;
 
 public class DictionaryCrackingService extends PasswordCrackingService {
 
-    private final String dictionaryPath;
+    private final String dictionaryFile;
 
-    public DictionaryCrackingService(String dictionaryPath) {
-        this.dictionaryPath = dictionaryPath;
+    public DictionaryCrackingService() {
+        this.dictionaryFile = PasswordCrackingApplication.settingsManager.getDictionaryFile();
+    }
+
+    public DictionaryCrackingService(String dictionaryFile) {
+        this.dictionaryFile = dictionaryFile;
     }
 
     @Override
@@ -37,7 +42,7 @@ public class DictionaryCrackingService extends PasswordCrackingService {
 
         try {
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionaryPath));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionaryFile));
 
             while(bufferedReader.ready()) {
 
