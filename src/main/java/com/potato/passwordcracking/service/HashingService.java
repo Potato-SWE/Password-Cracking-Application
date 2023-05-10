@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 public class HashingService {
 
     public String getHash(String str, HashingAlgorithm algorithm) throws HashingException {
-        
+
         if (str == null || algorithm == null) {
             return null;
         }
