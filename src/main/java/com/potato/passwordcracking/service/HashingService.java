@@ -16,7 +16,7 @@ public class HashingService {
     public String getHash(String str, HashingAlgorithm algorithm) throws HashingException {
 
         if (str == null || algorithm == null) {
-            return null;
+            throw new HashingException("Unable to get hash with null string or algorithm.");
         }
 
         switch (algorithm) {
@@ -31,7 +31,7 @@ public class HashingService {
         }
     }
 
-    private String getHash(String str, String algorithm) {
+    private String getHash(String str, String algorithm) throws HashingException {
 
         try {
 
@@ -50,7 +50,7 @@ public class HashingService {
             return stringBuilder.toString();
 
         } catch (NoSuchAlgorithmException e) {
-            return null;
+            throw new HashingException(e);
         }
     }
 

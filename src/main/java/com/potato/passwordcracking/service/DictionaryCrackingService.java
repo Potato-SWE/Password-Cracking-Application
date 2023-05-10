@@ -3,6 +3,7 @@ package com.potato.passwordcracking.service;
 import com.potato.passwordcracking.PasswordCrackingApplication;
 import com.potato.passwordcracking.constant.HashingAlgorithm;
 import com.potato.passwordcracking.exception.HashingException;
+import com.potato.passwordcracking.exception.PasswordCrackingException;
 import com.potato.passwordcracking.model.PasswordCrackingRequest;
 import com.potato.passwordcracking.model.PasswordCrackingResponse;
 
@@ -24,10 +25,10 @@ public class DictionaryCrackingService extends PasswordCrackingService {
     }
 
     @Override
-    public PasswordCrackingResponse crackPasswords(PasswordCrackingRequest request) {
+    public PasswordCrackingResponse crackPasswords(PasswordCrackingRequest request) throws PasswordCrackingException {
 
         if (request == null || request.getAlgorithm() == null || request.getHashedPasswords() == null) {
-            return new PasswordCrackingResponse();
+            throw new PasswordCrackingException("Unable to crack passwords with invalid request.");
         }
 
         HashSet<String> hashedPasswords = new HashSet<>(request.getHashedPasswords());
@@ -36,7 +37,7 @@ public class DictionaryCrackingService extends PasswordCrackingService {
         return crackPasswords(algorithm, hashedPasswords);
     }
 
-    private PasswordCrackingResponse crackPasswords(HashingAlgorithm algorithm, HashSet<String> hashedPasswords) {
+    private PasswordCrackingResponse crackPasswords(HashingAlgorithm algorithm, HashSet<String> hashedPasswords) throws PasswordCrackingException {
 
         PasswordCrackingResponse response = new PasswordCrackingResponse();
 
@@ -58,8 +59,7 @@ public class DictionaryCrackingService extends PasswordCrackingService {
             return response;
 
         } catch (IOException | HashingException e) {
-            e.printStackTrace();
-            return response;
+            throw new PasswordCrackingException(e);
         }
     }
 }
