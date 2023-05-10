@@ -1,51 +1,30 @@
 package com.potato.passwordcracking.service;
 
 import com.potato.passwordcracking.constant.HashingAlgorithm;
-import com.potato.passwordcracking.exception.PasswordCrackingException;
 import com.potato.passwordcracking.model.PasswordCrackingRequest;
 import com.potato.passwordcracking.model.PasswordCrackingResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DictionaryCrackingServiceTest {
+class BruteForceCrackingServiceTest {
 
-    private final DictionaryCrackingService dictionaryCrackingService;
+    private final BruteForceCrackingService bruteForceCrackingService = new BruteForceCrackingService(3);
     private final HashingService hashingService = new HashingService();
-    private final String dictionaryFile = System.getProperty("user.dir") + "/resources/rockyou.txt";
-
-    public DictionaryCrackingServiceTest() {
-        this.dictionaryCrackingService = new DictionaryCrackingService(dictionaryFile);
-    }
 
     @Test
-    public void invalidRequestTest() {
-
-        PasswordCrackingRequest request = new PasswordCrackingRequest();
-
-        assertThrows(PasswordCrackingException.class, () -> {
-            dictionaryCrackingService.crackPasswords(null);
-        });
-
-        assertThrows(PasswordCrackingException.class, () -> {
-            dictionaryCrackingService.crackPasswords(request);
-        });
-
-    }
-
-    @Test
-    public void validRequestTest() {
+    public void crackPasswordsTest() {
 
         HashingAlgorithm algorithm = HashingAlgorithm.SHA256;
 
-        String[] crackablePasswords = new String[]{
-                "qazwsx",
-                "nokia",
-                "rockyou1"
+        String[] crackablePasswords = new String[] {
+                "var",
+                "arm",
+                "hop"
         };
 
-        String[] uncrackablePasswords = new String[]{
-                "uncrackable password that is not in my dictionary file"
+        String[] uncrackablePasswords = new String[] {
+                "too many characters to be crackable."
         };
 
         PasswordCrackingRequest request = new PasswordCrackingRequest();
@@ -61,7 +40,7 @@ class DictionaryCrackingServiceTest {
             request.addHashedPassword(hashedPassword);
         }
 
-        PasswordCrackingResponse response = dictionaryCrackingService.crackPasswords(request);
+        PasswordCrackingResponse response = bruteForceCrackingService.crackPasswords(request);
 
         for (String password : crackablePasswords) {
             String hashedPassword = hashingService.getHash(password, algorithm);
@@ -73,5 +52,4 @@ class DictionaryCrackingServiceTest {
             assertNull(response.getCrackedPassword(hashedPassword));
         }
     }
-
 }
