@@ -1,5 +1,6 @@
 package com.potato.passwordcracking.service;
 
+import com.potato.passwordcracking.PasswordCrackingApplication;
 import com.potato.passwordcracking.constant.HashingAlgorithm;
 import com.potato.passwordcracking.exception.PasswordCrackingException;
 import com.potato.passwordcracking.model.PasswordCrackingRequest;
@@ -12,7 +13,7 @@ class DictionaryCrackingServiceTest {
 
     private final DictionaryCrackingService dictionaryCrackingService;
     private final HashingService hashingService = new HashingService();
-    private final String dictionaryFile = System.getProperty("user.dir") + "/resources/rockyou.txt";
+    private final String dictionaryFile = PasswordCrackingApplication.APPLICATION_DIRECTORY + "/resources/rockyou.txt";
 
     public DictionaryCrackingServiceTest() {
         this.dictionaryCrackingService = new DictionaryCrackingService(dictionaryFile);

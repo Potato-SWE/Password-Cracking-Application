@@ -1,5 +1,7 @@
 package com.potato.passwordcracking.settings;
 
+import com.potato.passwordcracking.PasswordCrackingApplication;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -11,7 +13,6 @@ public class SettingsManager {
     }
 
     private final Settings settings = new Settings();
-    private final String DEFAULT_SETTINGS_PATH = System.getProperty("user.dir")+"/resources/settings.properties";
     private final String DICTIONARY_KEY = "dictionary-file";
     private boolean settingsInitialized = false;
 
@@ -21,10 +22,6 @@ public class SettingsManager {
 
     public SettingsManager(String settingsPath) {
         loadSettings(settingsPath);
-        if(settingsInitialized) {
-            return;
-        }
-        loadSettings(DEFAULT_SETTINGS_PATH);
     }
 
     public boolean settingsInitialized() {
@@ -33,14 +30,10 @@ public class SettingsManager {
 
     //TODO: save settings
 
-    public boolean loadSettings() {
-        return loadSettings(DEFAULT_SETTINGS_PATH);
-    }
-
-    public boolean loadSettings(String settingsPath) {
+    public void loadSettings(String settingsPath) {
 
         if(settingsPath == null || settingsPath.length() == 0) {
-            return settingsInitialized = false;
+            return;
         }
 
         Properties props = new Properties();
@@ -51,11 +44,13 @@ public class SettingsManager {
             String dictionaryFile = props.getProperty(DICTIONARY_KEY);
             settings.dictionaryFile = dictionaryFile;
 
-            return settingsInitialized = true;
-
+            settingsInitialized = true;
+            return;
         } catch(IOException e) {
             e.printStackTrace();
-            return settingsInitialized = false;
+            settings.dictionaryFile = null;
+            settingsInitialized = false;
+            return;
         }
     }
 

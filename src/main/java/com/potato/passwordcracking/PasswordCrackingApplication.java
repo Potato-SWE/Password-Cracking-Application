@@ -5,7 +5,8 @@ import com.potato.passwordcracking.view.PasswordCrackingView;
 
 public class PasswordCrackingApplication {
 
-    public final static SettingsManager settingsManager = new SettingsManager();
+    public static final SettingsManager settingsManager = new SettingsManager();
+    public static final String APPLICATION_DIRECTORY = System.getProperty("user.dir").replace('\\', '/');
 
     public static void main(String[] args) {
         if (args.length > 0) {
@@ -13,7 +14,7 @@ public class PasswordCrackingApplication {
         }
 
         if (!settingsManager.settingsInitialized()) {
-            settingsManager.loadSettings();
+            settingsManager.loadSettings(APPLICATION_DIRECTORY+"/resources/settings.properties");
         }
         if (!settingsManager.settingsInitialized()) {
             System.out.println("Error loading settings.");
@@ -25,7 +26,7 @@ public class PasswordCrackingApplication {
     }
 
     private static void launchApplication() {
-        PasswordCrackingView passwordCrackingView = new PasswordCrackingView();
+        PasswordCrackingView passwordCrackingView = new PasswordCrackingView(settingsManager);
         passwordCrackingView.run();
     }
 }
