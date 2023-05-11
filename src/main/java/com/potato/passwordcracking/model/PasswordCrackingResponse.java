@@ -37,12 +37,4 @@ public class PasswordCrackingResponse {
     public String getCrackedPassword(String hashedPassword) {
         return crackedPasswordMap.get(hashedPassword);
     }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("---------- RESPONSE ----------\nMessage: \"" + message + "\"\n----- CRACKED PASSWORDS -----\n");
-        stringBuilder.append(crackedPasswordMap);
-        return stringBuilder.toString();
-    }
 }

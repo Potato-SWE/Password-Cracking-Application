@@ -1,5 +1,7 @@
 package com.potato.passwordcracking;
 
+import com.potato.passwordcracking.model.PasswordCrackingRequest;
+import com.potato.passwordcracking.service.ResponseOutputService;
 import com.potato.passwordcracking.settings.SettingsManager;
 import com.potato.passwordcracking.view.PasswordCrackingView;
 
