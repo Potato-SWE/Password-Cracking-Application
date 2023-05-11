@@ -1,6 +1,7 @@
 package com.potato.passwordcracking.service;
 
 import com.potato.passwordcracking.constant.HashingAlgorithm;
+import com.potato.passwordcracking.exception.HashingException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,12 +12,16 @@ class HashingServiceTest {
 
     @Test
     public void hashNullStringTest() {
-        assertNull(hashingService.getHash(null, HashingAlgorithm.MD5));
+        assertThrows(HashingException.class, () -> {
+            hashingService.getHash(null, HashingAlgorithm.MD5);
+        });
     }
 
     @Test
     public void hashWithNullAlgorithmTest() {
-        assertNull(hashingService.getHash("test", null));
+        assertThrows(HashingException.class, () -> {
+            hashingService.getHash("test", null);
+        });
     }
 
     @Test
