@@ -17,11 +17,11 @@ public class PasswordCrackingController {
     }
 
     public PasswordCrackingResponse crackPasswords(PasswordCrackingRequest request) {
-        if(request == null) {
+        if (request == null) {
             return new PasswordCrackingResponse("Unable to crack passwords with null request.");
         }
 
-        if(request.getStrategy() == null) {
+        if (request.getStrategy() == null) {
             return new PasswordCrackingResponse("Unable to crack passwords with null strategy.");
         }
 
@@ -36,7 +36,7 @@ public class PasswordCrackingController {
                     return new PasswordCrackingResponse("Unsupported password cracking service.");
             }
 
-        } catch(PasswordCrackingException e) {
+        } catch (PasswordCrackingException e) {
             return new PasswordCrackingResponse(e.getMessage());
         }
     }

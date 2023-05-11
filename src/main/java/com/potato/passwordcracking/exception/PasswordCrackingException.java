@@ -1,6 +1,6 @@
 package com.potato.passwordcracking.exception;
 
-public class PasswordCrackingException  extends RuntimeException {
+public class PasswordCrackingException extends RuntimeException {
 
     public PasswordCrackingException() {
         super();

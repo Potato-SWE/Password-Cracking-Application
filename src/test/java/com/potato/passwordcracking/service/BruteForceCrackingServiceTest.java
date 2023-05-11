@@ -5,7 +5,8 @@ import com.potato.passwordcracking.model.PasswordCrackingRequest;
 import com.potato.passwordcracking.model.PasswordCrackingResponse;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class BruteForceCrackingServiceTest {
 
@@ -17,13 +18,13 @@ class BruteForceCrackingServiceTest {
 
         HashingAlgorithm algorithm = HashingAlgorithm.SHA256;
 
-        String[] crackablePasswords = new String[] {
+        String[] crackablePasswords = new String[]{
                 "var",
                 "arm",
                 "hop"
         };
 
-        String[] uncrackablePasswords = new String[] {
+        String[] uncrackablePasswords = new String[]{
                 "too many characters to be crackable."
         };
 

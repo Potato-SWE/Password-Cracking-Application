@@ -8,8 +8,8 @@ import java.util.List;
 
 public class PasswordCrackingRequest {
 
-   private final List<String> hashedPasswords = new ArrayList<>();
-   private HashingAlgorithm algorithm = null;
+    private final List<String> hashedPasswords = new ArrayList<>();
+    private HashingAlgorithm algorithm = null;
     private CrackingStrategy strategy = null;
 
     public List<String> getHashedPasswords() {
@@ -28,18 +28,18 @@ public class PasswordCrackingRequest {
     }
 
     public void setHashedPasswords(List<String> hashedPasswords) {
-        if(hashedPasswords == null) {
+        if (hashedPasswords == null) {
             return;
         }
 
-        for(int i = 0; i < hashedPasswords.size(); i++) {
+        for (int i = 0; i < hashedPasswords.size(); i++) {
             addHashedPassword(hashedPasswords.get(i));
         }
 
     }
 
     public void setAlgorithm(HashingAlgorithm algorithm) {
-        if(algorithm == null) {
+        if (algorithm == null) {
             return;
         }
         this.algorithm = algorithm;

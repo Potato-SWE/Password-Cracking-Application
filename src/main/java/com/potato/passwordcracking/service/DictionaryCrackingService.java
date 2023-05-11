@@ -45,12 +45,12 @@ public class DictionaryCrackingService extends PasswordCrackingService {
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionaryFile));
 
-            while(bufferedReader.ready()) {
+            while (bufferedReader.ready()) {
 
                 String line = bufferedReader.readLine();
                 String hashedLine = getHash(line, algorithm);
 
-                if(hashedLine != null && hashedPasswords.contains(hashedLine)) {
+                if (hashedLine != null && hashedPasswords.contains(hashedLine)) {
                     response.add(hashedLine, line);
                 }
             }

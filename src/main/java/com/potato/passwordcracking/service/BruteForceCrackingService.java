@@ -41,8 +41,8 @@ public class BruteForceCrackingService extends PasswordCrackingService {
         PasswordCrackingResponse response = new PasswordCrackingResponse();
 
         int numberOfChars = 2;
-        while(numberOfChars <= maxChars && !cancelAttack) {
-            System.out.println("brute force: "+numberOfChars);
+        while (numberOfChars <= maxChars && !cancelAttack) {
+            System.out.println("brute force: " + numberOfChars);
             bruteForceWithGivenChars(algorithm, hashedPasswords, numberOfChars++, response);
         }
 
@@ -50,31 +50,31 @@ public class BruteForceCrackingService extends PasswordCrackingService {
     }
 
     private void bruteForceWithGivenChars(HashingAlgorithm algorithm, HashSet<String> hashedPasswords, int numberOfCharacters, PasswordCrackingResponse response) {
-        if(numberOfCharacters < 1) {
+        if (numberOfCharacters < 1) {
             return;
         }
 
         char[] charArray = new char[numberOfCharacters];
         int index = 0;
 
-        while(index < charArray.length && !cancelAttack) {
+        while (index < charArray.length && !cancelAttack) {
 
             String permutation = new String(charArray);
             String hashedPermutation = getHash(permutation, algorithm);
 
-            if(hashedPasswords.contains(hashedPermutation)) {
+            if (hashedPasswords.contains(hashedPermutation)) {
                 response.add(hashedPermutation, permutation);
             }
 
-            for(int i = 0; i < charArray.length; i++) {
-                if(charArray[i] < max) {
+            for (int i = 0; i < charArray.length; i++) {
+                if (charArray[i] < max) {
                     charArray[i]++;
                     break;
                 }
 
                 charArray[i] = min;
 
-                if(i == index) {
+                if (i == index) {
                     index++;
                 }
             }

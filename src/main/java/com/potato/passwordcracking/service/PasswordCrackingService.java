@@ -14,7 +14,7 @@ public abstract class PasswordCrackingService {
     protected String getHash(String str, HashingAlgorithm algorithm) {
         try {
             return hashingService.getHash(str, algorithm);
-        } catch(HashingException e) {
+        } catch (HashingException e) {
             e.printStackTrace();
             return null;
         }

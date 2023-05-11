@@ -41,7 +41,7 @@ public class PasswordCrackingResponse {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("---------- RESPONSE ----------\nMessage: \""+message+"\"\n----- CRACKED PASSWORDS -----\n");
+        stringBuilder.append("---------- RESPONSE ----------\nMessage: \"" + message + "\"\n----- CRACKED PASSWORDS -----\n");
         stringBuilder.append(crackedPasswordMap);
         return stringBuilder.toString();
     }

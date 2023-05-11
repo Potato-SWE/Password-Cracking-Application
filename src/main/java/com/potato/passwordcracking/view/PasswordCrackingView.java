@@ -9,17 +9,12 @@ import com.potato.passwordcracking.model.PasswordCrackingResponse;
 import com.potato.passwordcracking.settings.SettingsManager;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class PasswordCrackingView extends JFrame {
 

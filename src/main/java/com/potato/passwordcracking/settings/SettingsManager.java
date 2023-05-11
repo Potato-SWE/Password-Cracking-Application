@@ -1,7 +1,5 @@
 package com.potato.passwordcracking.settings;
 
-import com.potato.passwordcracking.PasswordCrackingApplication;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -32,7 +30,7 @@ public class SettingsManager {
 
     public void loadSettings(String settingsPath) {
 
-        if(settingsPath == null || settingsPath.length() == 0) {
+        if (settingsPath == null || settingsPath.length() == 0) {
             return;
         }
 
@@ -46,7 +44,7 @@ public class SettingsManager {
 
             settingsInitialized = true;
             return;
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             settings.dictionaryFile = null;
             settingsInitialized = false;

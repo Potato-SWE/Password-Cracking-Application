@@ -14,13 +14,13 @@ public class PasswordCrackingApplication {
         }
 
         if (!settingsManager.settingsInitialized()) {
-            settingsManager.loadSettings(APPLICATION_DIRECTORY+"/resources/settings.properties");
+            settingsManager.loadSettings(APPLICATION_DIRECTORY + "/resources/settings.properties");
         }
         if (!settingsManager.settingsInitialized()) {
             System.out.println("Error loading settings.");
             return;
         } else {
-            System.out.println("settings loaded: " + settingsManager.getDictionaryFile()+" -> launching application.");
+            System.out.println("settings loaded: " + settingsManager.getDictionaryFile() + " -> launching application.");
             launchApplication();
         }
     }
