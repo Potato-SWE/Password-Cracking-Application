@@ -6,15 +6,21 @@ import com.potato.passwordcracking.constant.HashingAlgorithm;
 import com.potato.passwordcracking.controller.PasswordCrackingController;
 import com.potato.passwordcracking.model.PasswordCrackingRequest;
 import com.potato.passwordcracking.model.PasswordCrackingResponse;
+import com.potato.passwordcracking.service.ResponseOutputService;
 import com.potato.passwordcracking.settings.SettingsManager;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PasswordCrackingView extends JFrame {
 
@@ -74,7 +80,12 @@ public class PasswordCrackingView extends JFrame {
 
     private void crackPasswords() {
         PasswordCrackingResponse response = controller.crackPasswords(buildRequest());
-        System.out.println(response.toString());
+        try {
+            String outputPath = ResponseOutputService.write(response);
+            setResponse("Output file name: " + outputPath);
+        } catch (IOException e) {
+            setResponse(e.getMessage());
+        }
     }
 
     private PasswordCrackingRequest buildRequest() {
